@@ -1,0 +1,44 @@
+# Multiunit STL plot with different trend season window configuration 
+# control how rapidly the trend-cycle and seasonal components can change. 
+# Smaller values allow for more rapid changes
+# Setting seasonal window to be infinite is equivalent to forcing the seasonal component to be periodic (identical across years).
+
+Feature Extraction And Statistics for Time Series
+Produces time series features, decompositions, statistical summaries and visualizations.
+http://feasts.tidyverts.org/
+Works with tidy temporal data provided by the tsibble package. Produces time series features, decompositions, statistical summaries and visualisations.
+Simple statistics (Mean, Quantiles), STL features….
+
+#Correlation Analysis
+#Long to wide format for calculating correlation among states
+# Rolling correlation between X and Y to know change in correlation over time
+# changes in correlation can signal events
+# To decide whether to trust the relationship for forecasting
+# detect shift in trend as and when timeseries becomes more/less correlated 
+
+Trend_strength & seasonal_strength
+•	Strongly trended data, seasonally adjusted data should have much variation than reminder
+•	if trend Small then, var of reminder /var of (trend+reminder); var of reminder <<<< var of (trend+reminder); 
+•	if no trend, var of reminder  = var of (trend+reminder)
+
+•	Strongly seasonal data, detrended data should have much variation than reminder
+•	if seasonal Small, var of reminder /var of (seas+reminder); var of reminder <<<< var of (seas+reminder); 
+•	if no seas, var of reminder  = var of (seas+reminder)
+
+spikiness: The spikiness feature is useful when a time series is affected by occasional outliers. measures the prevalence of spikes in the remainder component
+linearity: measures the linearity of trend, coeff of linear comp (order1)
+curvature: measures the curvature of trend, coeff of quad comp (order2)
+
+Short memory process, the dependence between values at different times rapidly decreases as we increase the time difference between them
+if points are independent, autocorrelation drops to 0 after a certain lag, exponential decay
+
+Long memory, the dependence is stronger. The decay of the autocorrelation function is power-like.
+memory:  increase the temporal distance between two points, how strongly will they continue to be correlated?
+Brownian time series: no correlation b/w current and future,random walk,difficult to make predictions
+Cyclostationary: E.g: Temperature data
+
+seasonality test of residuals
+Normality Test/autocorrelation
+Ljung-Box Q-statistics  and the Box-Pierce Q-statistics
+These tests check for the presence of autocorrelation between lags, which is a sign that the values of residuals are not independent. The number of lags that are taken into account de-pends on the time series frequency. The test on regular lags examines the first 24 lags (for monthly series) or the first 16 lags (for quarterly series). The tests for residual seasonal auto-correlation in residuals consider the first two seasonal lags, irrespective of the time series fre-quency.
+Another test that checks for the presence of autocorrelation in the residuals is the Durbin–Watson statistic. A test outcome that is close to 2 indicates no sign of autocorrelation. For de-tails of the Durbin –Watson test see 7.6.1.2.
